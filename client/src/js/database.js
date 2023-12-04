@@ -17,28 +17,22 @@ const initdb = async () =>
   });
 
 
-export const putDb = async (content) => {
-  
-  const openDB = await openDB(DB_NAME, 1);
-
-  const transactionVar = openDB.transaction(DB_NAME, 'readwrite');
-
+export const putDb = async (content) => {  
+  const db = await openDB(DB_NAME, 1);
+  const transactionVar = db.transaction(DB_NAME, 'readwrite');
   const storeVar = transactionVar.objectStore(DB_NAME);
-
   const request = storeVar.put({ id: 1, value: content });
   const result = await request;
   console.log('🚀 - data saved to the database', result.value);
 };
 
-export const getDb = async () => {
-  
-  const openDB = await openDB(DB_NAME, 1);
-
-  const transactionVar = openDB.transaction(DB_NAME, 'readonly');
-
+export const getDb = async () => {  
+  console.error("error in getDB")
+  console.log()
+  const db = await openDB(DB_NAME, 1);
+  const transactionVar = db.transaction(DB_NAME, 'readonly');
   const storeVar = transactionVar.objectStore(DB_NAME);
-  
-  const request = store.get(1);
+  const request = storeVar.get(1);
   const result = await request;
   result
     ? console.log('🚀 - data retrieved from the database', result.value)
