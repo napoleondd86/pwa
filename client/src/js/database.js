@@ -27,8 +27,6 @@ export const putDb = async (content) => {
 };
 
 export const getDb = async () => {  
-  console.error("error in getDB")
-  console.log()
   const db = await openDB(DB_NAME, 1);
   const transactionVar = db.transaction(DB_NAME, 'readonly');
   const storeVar = transactionVar.objectStore(DB_NAME);
